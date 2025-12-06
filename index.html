@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ensar yaman</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: sans-serif;
+      overflow: hidden;
+
+      background: linear-gradient(135deg, #dff3ff, #c7e3ff);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: -120px;
+      background:
+        radial-gradient(circle at 20% 20%, #b0dcff 0%, transparent 55%),
+        radial-gradient(circle at 75% 15%, #d2eaff 0%, transparent 55%),
+        radial-gradient(circle at 30% 85%, #a5d4ff 0%, transparent 60%),
+        radial-gradient(circle at 85% 80%, #cfe6ff 0%, transparent 55%);
+      filter: blur(45px);
+      z-index: -1;
+    }
+
+    .hero-card {
+      width: min(1120px, 90%);
+      height: 520px;
+
+      background: rgba(255, 255, 255, 0.18);  /* çok hafif beyaz + mavi görünüm */
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(22px) saturate(160%);
+      -webkit-backdrop-filter: blur(22px) saturate(160%);
+
+      box-shadow:
+        0 25px 60px rgba(0, 50, 100, 0.15),
+        inset 0 0 30px rgba(255, 255, 255, 0.18);
+    }
+  </style>
+</head>
+<body>
+  <div class="hero-card"></div>
+</body>
+</html>
