@@ -1,57 +1,90 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ensar yaman</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: sans-serif;
-      overflow: hidden;
-
-      background: linear-gradient(135deg, #dff3ff, #c7e3ff);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -120px;
-      background:
-        radial-gradient(circle at 20% 20%, #b0dcff 0%, transparent 55%),
-        radial-gradient(circle at 75% 15%, #d2eaff 0%, transparent 55%),
-        radial-gradient(circle at 30% 85%, #a5d4ff 0%, transparent 60%),
-        radial-gradient(circle at 85% 80%, #cfe6ff 0%, transparent 55%);
-      filter: blur(45px);
-      z-index: -1;
-    }
-
-    .hero-card {
-      width: min(1120px, 90%);
-      height: 520px;
-
-      background: rgba(255, 255, 255, 0.18);  /* çok hafif beyaz + mavi görünüm */
-      border-radius: 32px;
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      backdrop-filter: blur(22px) saturate(160%);
-      -webkit-backdrop-filter: blur(22px) saturate(160%);
-
-      box-shadow:
-        0 25px 60px rgba(0, 50, 100, 0.15),
-        inset 0 0 30px rgba(255, 255, 255, 0.18);
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aim Trainer</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#127919;</text></svg>">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="hero-card"></div>
+    <div class="container">
+        <h1>&#127919; Aim Trainer</h1>
+        
+        <div class="stats">
+            <div class="stat">
+                <span class="stat-value" id="score">0</span>
+                <span class="stat-label">Skor</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="time">30</span>
+                <span class="stat-label">S&#252;re</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="accuracy">0%</span>
+                <span class="stat-label">&#304;sabet</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="avgTime">0ms</span>
+                <span class="stat-label">Ort. S&#252;re</span>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="maxCombo">0</span>
+                <span class="stat-label">Max Kombo</span>
+            </div>
+        </div>
+
+        <div class="game-area" id="gameArea">
+            <div class="high-score-badge" id="highScoreBadge">&#128081; En &#304;yi: 0</div>
+            <div class="combo-display" id="comboDisplay">0x KOMBO</div>
+            <div class="multiplier" id="multiplier">&#215;1.0</div>
+            <div class="combo-bar-container" id="comboBarContainer">
+                <div class="combo-bar" id="comboBar"></div>
+            </div>
+            <div class="overlay" id="overlay">
+                <h2>&#127919; Aim Trainer</h2>
+                <p>Hedeflere m&#252;mk&#252;n oldu&#287;unca h&#305;zl&#305; t&#305;kla!</p>
+                <p>&#128293; &#220;st &#252;ste vuru&#351;lar = Kombo bonusu!</p>
+                <p>Oyunu ba&#351;latmak i&#231;in a&#351;a&#287;&#305;daki butona t&#305;kla.</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="select-group">
+                <label for="difficulty">Zorluk:</label>
+                <select id="difficulty">
+                    <option value="easy">Kolay</option>
+                    <option value="medium" selected>Orta</option>
+                    <option value="hard">Zor</option>
+                    <option value="extreme">Ekstrem</option>
+                </select>
+            </div>
+            <div class="select-group">
+                <label for="gameMode">Mod:</label>
+                <select id="gameMode">
+                    <option value="classic">Klasik</option>
+                    <option value="moving">Hareketli</option>
+                    <option value="chaos">Kaos</option>
+                </select>
+            </div>
+            <button class="btn-start" id="startBtn" onclick="startGame()">Ba&#351;lat</button>
+            <button class="btn-reset" onclick="resetGame()">S&#305;f&#305;rla</button>
+            <button class="btn-scores" onclick="showLeaderboard()">&#127942; Skorlar</button>
+            <button class="btn-sound" id="soundBtn" onclick="toggleSound()">&#128266;</button>
+        </div>
+    </div>
+
+    <!-- Leaderboard Modal -->
+    <div class="modal" id="leaderboardModal">
+        <div class="modal-content">
+            <h2>&#127942; En &#304;yi Skorlar</h2>
+            <ul class="leaderboard-list" id="leaderboardList">
+            </ul>
+            <button class="close-modal" onclick="closeLeaderboard()">Kapat</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
